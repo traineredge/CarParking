@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Database.Model
 {
+    //comment
     public class BaseModel
     {
         public DateTime CreatedDate { get; set; } = DateTime.Now;
