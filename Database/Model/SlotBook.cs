@@ -2,7 +2,7 @@
 
 namespace Database.Model
 {
-    public class SlotBook : BaseModel
+    public class SlotBook:BaseModel
     {
         [Key]
         public string SlotBookId { get; set; } = Guid.NewGuid().ToString();

@@ -2,12 +2,12 @@
 
 namespace Database.Model
 {
-    public class User: BaseModel
+    public class UserInfo: BaseModel
     {
         [Key]
         public string UserId { get; set; } = Guid.NewGuid().ToString();
-        [Required]
-        public string? Name { get; set; }
+        [Required,MaxLength(40)]
+        public string? FullName { get; set; }
         [Required]
         public string? Email { get; set; }
         [Required]
