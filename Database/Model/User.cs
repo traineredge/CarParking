@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Database.Context;
+using System.ComponentModel.DataAnnotations;
 
 namespace Database.Model
 {
     public class UserInfo: BaseModel
     {
         [Key]
-        public string UserId { get; set; } = Guid.NewGuid().ToString();
+        public string UserInfoId { get; set; } = Guid.NewGuid().ToString();
         [Required,MaxLength(40)]
         public string? FullName { get; set; }
         [Required]
