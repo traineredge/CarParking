@@ -1,9 +1,8 @@
-﻿using Database.Context;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Database.Model
 {
-    public class UserInfo : BaseModel
+    public class UserRoleInfo
     {
         [Key]
         public string UserInfoId { get; set; } = Guid.NewGuid().ToString();
@@ -15,5 +14,8 @@ namespace Database.Model
         public string? PasswordHash { get; set; }
         public bool IsActive { get; set; }
         public int RoleId { get; set; }
+        public string RoleName { get; set; }
+        public string CreatedByName { get; set; }
+        public string? UpdatedByName { get; set; }
     }
 }

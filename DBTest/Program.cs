@@ -7,12 +7,14 @@ namespace DBTest
     {
         static void Main(string[] args)
         {
-            var db = new CarParkingContext();
+            CarParkingContext db = new CarParkingContext();
 
-            UserInfo MyUser=db.UserInfo.Where(x=>x.UserInfoId== "00184282-58e1-4ff6-8987-d531f42ae4a2").FirstOrDefault();
-            Console.WriteLine($"Name:{MyUser.FullName}--Email:{MyUser.Email}");
-            db.UserInfo.Remove(MyUser);
-            db.SaveChanges();
+            var AllUser = db.UserRoleInfo.ToList();
+
+            
+            //Console.WriteLine($"Name:{MyUser.FullName}--Email:{MyUser.Email}");
+            //db.UserInfo.Remove(MyUser);
+            //db.SaveChanges();
         }
     }
 

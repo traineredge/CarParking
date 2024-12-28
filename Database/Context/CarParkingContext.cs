@@ -16,7 +16,9 @@ namespace Database.Context
         public DbSet<SlotBook> SlotBook { get; set; }
         public DbSet<PaymentMethod> PaymentMethod { get; set; }
         public DbSet<Payment> Payment { get; set; }
-        public DbSet<Class1> Class1 { get; set; }
+
+
+        public DbSet<UserRoleInfo> UserRoleInfo { get; set; }
     }
 }
 
