@@ -7,6 +7,7 @@ namespace Web.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        public List<string> roles { get; set; }
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -14,7 +15,8 @@ namespace Web.Pages
 
         public void OnGet()
         {
-
+            roles = new List<string>()
+            { "1","2","3" };
         }
     }
 }

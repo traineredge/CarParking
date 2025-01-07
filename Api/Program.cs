@@ -30,7 +30,6 @@ namespace Api
             app.MapControllers();
 
             app.Run();
-            var Car = new Database.Car();
         }
     }
 }

@@ -10,9 +10,9 @@ namespace BusinessTest
     {
         static void Main(string[] args)
         {
-            //RegistrationTest();
+            RegistrationTest();
             //LoginTest();
-            UserListTest();
+            //UserListTest();
         }
 
         static void RegistrationTest()
@@ -36,13 +36,13 @@ namespace BusinessTest
         }
         static void UserListTest()
         {
-            Result result = new UserService().List(true);
-            
+            Result result = new UserService().List();
+
         }
         static void UserTest()
         {
-            Result result = new UserService().List(false);
-            
+            Result result = new UserService().Single("UserId");
+
         }
     }
 }

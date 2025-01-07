@@ -1,0 +1,76 @@
+﻿@page
+@model Web.Pages.LoginModel
+@{
+    Layout = "MyLayout";
+}
+<style>
+    .login-page {
+        background: #673AB7;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-body {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 15px;
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .login-input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 22px;
+    }
+
+        .login-input > label {
+        }
+
+        .login-input > input {
+            height: 30px;
+            border: none;
+            border-bottom: 1px solid darkgray;
+        }
+
+    .login-button {
+        border: none;
+        background: #3F51B5;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .reg-link {
+        display: block;
+        margin: 20px 0;
+        color: gray;
+    }
+</style>
+<div class="login-page">
+    <div class="login-body">
+        <div class="login-header">Login</div>
+        <form asp-action="post">
+            <div class="login-input">
+                <label>Username</label>
+                <input asp-for="@Model.loginForm.Email" />
+            </div>
+            <div class="login-input">
+                <label>Password</label>
+                <input asp-for="@Model.loginForm.Password" />
+            </div>
+            <button type="submit" class="login-button">LOGIN</button>
+        </form>
+       
+
+        <a class="reg-link" href="/Registration">SIGN UP</a>
+    </div>
+</div>

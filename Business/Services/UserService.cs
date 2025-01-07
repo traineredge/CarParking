@@ -28,7 +28,7 @@ namespace Business.Services
             if (userInfo == null) return new Result(false, "Register First!");
 
             PasswordVerificationResult HashResult = new PasswordHasher<UserInfo>().VerifyHashedPassword(userInfo, userInfo.PasswordHash, user.Password);
-            if (HashResult == PasswordVerificationResult.Success)
+            if (HashResult != PasswordVerificationResult.Failed)
             {
                 return new Result(true, $"{userInfo.FullName} successfully logged in!");
             }
@@ -43,22 +43,26 @@ namespace Business.Services
             //logics
             return new Result().DBCommit(carParkingContext, "Updated Successfully!", null, user);
         }
-        public Result List(bool IsAdmin)
+        public Result List()
         {
             //logics
             try
             {
-                if (IsAdmin)
-                {
-                    var Users = carParkingContext.UserInfo.ToList();
-                    return new Result(true, "Success", Users);
-                }
-                else
-                {
-                    var User = carParkingContext.UserInfo.FirstOrDefault();
-                    return new Result(true, "Success", User);
-                }
-                
+                var Users = carParkingContext.UserInfo.ToList();
+                return new Result(true, "Success", Users);
+            }
+            catch (Exception ex)
+            {
+                return new Result(false,ex.Message);
+            }
+        }
+        public Result Single(string Id)
+        {
+            //logics
+            try
+            {
+                var User = carParkingContext.UserInfo.Where(x=>x.UserInfoId==Id).FirstOrDefault();
+                return new Result(true, "Success", User);
             }
             catch (Exception ex)
             {

@@ -20,5 +20,10 @@ namespace Desktop
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MyLabel.Content = "Content From Button Click!";
+        }
     }
 }

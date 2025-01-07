@@ -7,7 +7,7 @@ namespace Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddRazorPages();
+            builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
             var app = builder.Build();
 
@@ -29,7 +29,7 @@ namespace Web
             app.MapRazorPages();
 
             app.Run();
-            Database.Car car = new Database.Car();
+            
         }
     }
 }

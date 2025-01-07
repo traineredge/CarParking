@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{6F856489-6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBTest", "DBTest\DBTest.csproj", "{65AAD1EB-395B-4B46-B4F4-5A344A1C632F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessTest", "BusinessTest\BusinessTest.csproj", "{1AC06C9C-E155-46DD-BDEE-7AE5BEA3C17E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessTest", "BusinessTest\BusinessTest.csproj", "{1AC06C9C-E155-46DD-BDEE-7AE5BEA3C17E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
