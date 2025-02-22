@@ -1,0 +1,31 @@
+﻿@page
+@model Web.Pages.UserRegistrationModel
+@{
+    Layout = "MyLayout";
+}
+<div>
+    <form asp-action="post">
+        <div class="login-input">
+            <label>Username</label>
+            <input asp-for="@Model.userForm.Email" />
+        </div>
+        <div class="login-input">
+            <label>Full Name</label>
+            <input asp-for="@Model.userForm.FullName" />
+        </div>
+        <div class="login-input">
+            <label>Password</label>
+            <input asp-for="@Model.userForm.Password" />
+        </div>
+        <div class="login-input">
+            <label>Password</label>
+            <select asp-for="@Model.userForm.RoleId">
+                <option value="1">Admin</option>
+                <option value="2">Manager</option>
+            </select>
+        </div>
+        <button type="submit" class="login-button">Registration</button>
+    </form>
+</div>
+
+

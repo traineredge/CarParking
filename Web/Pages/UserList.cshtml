@@ -1,0 +1,30 @@
+﻿@page
+@model Web.Pages.UserListModel
+@{
+}
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Role</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.RoleId</td>
+                <td>
+                    <a href="/UserRegistration?Id=@item.UserInfoId">Edit</a>
+                    <a href="/UserDelete?Id=@item.UserInfoId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

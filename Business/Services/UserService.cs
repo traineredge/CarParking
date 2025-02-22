@@ -18,6 +18,9 @@ namespace Business.Services
             userInfo.PasswordHash = new PasswordHasher<UserInfo>().HashPassword(userInfo, user.Password);
             userInfo.RoleId = user.RoleId == 0 ? 3 : user.RoleId;
             userInfo.IsActive = true;
+            userInfo.CreatedBy=user.CreatedBy;
+            userInfo.UpdatedBy = user.UpdatedBy;
+            userInfo.UpdatedDate = user.UpdatedDate;
             carParkingContext.UserInfo.Add(userInfo);
             return new Result().DBCommit(carParkingContext, "Registered Successfully!", null, user);
         }

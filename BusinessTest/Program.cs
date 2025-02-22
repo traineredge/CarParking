@@ -21,6 +21,9 @@ namespace BusinessTest
             userForm.FullName = Console.ReadLine();
             userForm.Email = Console.ReadLine();
             userForm.Password = Console.ReadLine();
+            userForm.CreatedBy = "101";
+            userForm.UpdatedBy = "101";
+            userForm.UpdatedDate = DateTime.Now;
             Result result = new UserService().Registration(userForm);
             Console.WriteLine(result.Message);
         }
