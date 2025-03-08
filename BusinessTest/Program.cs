@@ -10,11 +10,12 @@ namespace BusinessTest
     {
         static void Main(string[] args)
         {
-            RegistrationTest();
+            //RegistrationTest();
             //LoginTest();
             //UserListTest();
+            RoleAdd();
         }
-
+        #region UserService
         static void RegistrationTest()
         {
             UserForm userForm = new UserForm();
@@ -47,5 +48,14 @@ namespace BusinessTest
             Result result = new UserService().Single("UserId");
 
         }
+        #endregion
+
+        #region RoleService
+        static void RoleAdd()
+        {
+            Result result = new RoleService().Add(new Role { Name="Cleaner",IsActive=true });
+            Console.WriteLine(result.Message);
+        }
+        #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Database.Model
+namespace Database.ViewModel
 {
     public class UserRoleInfo
     {
