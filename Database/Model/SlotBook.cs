@@ -9,9 +9,13 @@ namespace Database.Model
         [Required]
         public int SlotId { get; set; }
         [Required]
-        public int Duration { get; set; }
+        public DateTime BookingTime { get; set; }
+        [Required]
+        public int BookingDuration { get; set; }
         [Required]
         public string? RegNo { get; set; }
         public bool IsExitRequested { get; set; }
+
+        public DateTime ProbableExitTime => BookingTime.AddMinutes(BookingDuration);
     }
 }

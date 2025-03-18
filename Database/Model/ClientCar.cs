@@ -10,7 +10,8 @@ namespace Database.Model
     public class ClientCar
     {
         [Key]
-        public string ClientCarId { get; set; }
+        public int ClientCarId { get; set; }
+        public string CarRegistrationNo { get; set; }
         public string UserInfoId { get; set; }
         public int CarCategoryId { get; set; }
     }

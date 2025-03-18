@@ -12,32 +12,37 @@ namespace Business.Services
     {
         CarParkingContext carParkingContext = new CarParkingContext();
 
-        public Result SlotAvailable(string ClientCarId)
+        public Result SlotAvailable(int ClientCarId)
         {
-            //At first we need to find out the car reg no. and then
-            //we need find out the car category based on that reg no.
-
             ClientCar clientCar = carParkingContext.ClientCar.Where
                 (x => x.ClientCarId == ClientCarId).FirstOrDefault();
 
-            List<Slot> AvailableSlots = carParkingContext.Slot.Where
-                (x => x.CarCategoryId == clientCar.CarCategoryId 
-                && x.IsBooked == false).ToList();
-            if(AvailableSlots.Count==0)
+            var slots = carParkingContext.Slot
+                .Join(carParkingContext.SlotBook,
+                  slot => slot.SlotId,          // Key from the Slot collection
+                  slotBook => slotBook.SlotId,  // Key from the SlotBook collection
+                  (slot, slotBook) => new   // Select data to return
+                  {
+                      Slot = slot,
+                      SlotBook = slotBook
+                  }).Where(x => x.Slot.CarCategoryId == clientCar.CarCategoryId).ToList();
+
+            dynamic mv=null;
+            if (slots.Count(x=>x.Slot.IsBooked==false)==0)
             {
-                return new Result(false, "Slot not available", null);
+                mv= slots.OrderBy(x=>x.SlotBook.ProbableExitTime).FirstOrDefault();
+                return new Result(false, $"Slot will available after {mv.SlotBook.ProbableExitTime}", null);
             }
             else
             {
-                return new Result(true, "Success", AvailableSlots);
+                return new Result(true, "Success", mv);
             }
-            
-      
         }
-        //public Result Book(SlotBook slotBook)
-        //{
-
-            
-        //}
+        public Result Book(SlotBook slotBook)
+        {
+            //?? Payment...
+            carParkingContext.SlotBook.Add(slotBook);
+            return new Result().DBCommit(carParkingContext, "Booked Successfully!", null, slotBook);
+        }
     }
 }
