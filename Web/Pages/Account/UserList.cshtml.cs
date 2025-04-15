@@ -1,11 +1,13 @@
 using Business;
 using Business.Services;
 using Database.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Web.Pages
+namespace Web.Pages.Account
 {
+    [Authorize(Roles = "Admin")]
     public class UserListModel : PageModel
     {
         public List<UserInfo> List { get; set; } = new();

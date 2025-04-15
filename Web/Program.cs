@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace Web
 {
     public class Program
@@ -8,7 +10,14 @@ namespace Web
 
             // Add services to the container.
             builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/Unauthorized";
+            });
 
+            builder.Services.AddAuthorization();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,12 +33,13 @@ namespace Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();
 
             app.Run();
-            
+
         }
     }
 }

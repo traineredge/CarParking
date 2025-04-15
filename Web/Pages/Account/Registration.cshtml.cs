@@ -4,20 +4,20 @@ using Business.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Web.Pages
+namespace Web.Pages.Account
 {
-    public class LoginModel : PageModel
+    public class RegistrationModel : PageModel
     {
         [BindProperty]
-        public UserLoginForm loginForm {  get; set; }
+        public UserForm userForm { get; set; }
         public void OnGet()
         {
         }
         public IActionResult OnPost()
         {
-            Result result = new UserService().Login(loginForm);
+            Result result = new UserService().Registration(userForm);
             if (result.Success)
-               return RedirectToPage("/Index");
+                return RedirectToPage("/Index");
             else return Page();
         }
     }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Database.Model;
 
-namespace Web.Pages
+namespace Web.Pages.Account
 {
     public class UserRegistrationModel : PageModel
     {
