@@ -7,6 +7,6 @@ namespace Database.Model
         [Key]
         public int CarCategoryId { get; set; }
         [Required]
-        public string? Name { get; set; }//16 siter bus
+        public string? Name { get; set; }
     }
 }

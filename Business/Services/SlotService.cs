@@ -32,6 +32,18 @@ namespace Business.Services
                 return new Result(false, ex.Message);
             }
         }
+        public Result ViewList()
+        {
+            try
+            {
+                var slots = carParkingContext.SlotListView.ToList();
+                return new Result(true, "Success", slots);
+            }
+            catch (Exception ex)
+            {
+                return new Result(false, ex.Message);
+            }
+        }
         public Result Single(int Id)
         {
             try

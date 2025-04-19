@@ -1,31 +1,61 @@
 ﻿@page
 @model Web.Pages.Account.UserRegistrationModel
-@{
-    Layout = "MyLayout";
-}
-<div>
-    <form asp-action="post">
-        <div class="login-input">
-            <label>Username</label>
-            <input asp-for="@Model.userForm.Email" />
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Register an Account</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="post">
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Username (Email)</label>
+                            <input asp-for="@Model.userForm.Email" class="form-control" id="Email" placeholder="Enter your email" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="FullName" class="form-label">Full Name</label>
+                            <input asp-for="@Model.userForm.FullName" class="form-control" id="FullName" placeholder="Enter your full name" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Password</label>
+                            <input asp-for="@Model.userForm.Password" class="form-control" id="Password" type="password" placeholder="Enter your password" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="RoleId" class="form-label">Role</label>
+                            <select asp-for="@Model.userForm.RoleId" class="form-select" id="RoleId">
+                                <option value="1">Admin</option>
+                                <option value="2">Manager</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="login-input">
-            <label>Full Name</label>
-            <input asp-for="@Model.userForm.FullName" />
-        </div>
-        <div class="login-input">
-            <label>Password</label>
-            <input asp-for="@Model.userForm.Password" />
-        </div>
-        <div class="login-input">
-            <label>Password</label>
-            <select asp-for="@Model.userForm.RoleId">
-                <option value="1">Admin</option>
-                <option value="2">Manager</option>
-            </select>
-        </div>
-        <button type="submit" class="login-button">Registration</button>
-    </form>
+    </div>
 </div>
 
-
+<!-- Optional: Add some custom CSS for styling -->
+<style>
+    .card-header {
+        background-color: #007bff;
+        color: white;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>

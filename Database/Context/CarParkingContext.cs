@@ -8,8 +8,8 @@ namespace Database.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-POOH2AD\SQLEXPRESS;Database=CarParking;Trusted_Connection=True;TrustServerCertificate=True;ConnectRetryCount=0");
-            optionsBuilder.UseSqlServer(@"Server=.;Database=CarParking;Trusted_Connection=True;TrustServerCertificate=True;ConnectRetryCount=0");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-POOH2AD\SQLEXPRESS;Database=CarParking;Trusted_Connection=True;TrustServerCertificate=True;ConnectRetryCount=0");
+            //optionsBuilder.UseSqlServer(@"Server=.;Database=CarParking;Trusted_Connection=True;TrustServerCertificate=True;ConnectRetryCount=0");
         }
         public DbSet<UserInfo> UserInfo { get; set; }
         public DbSet<Role> Role{ get; set; }
@@ -22,6 +22,7 @@ namespace Database.Context
 
 
         public DbSet<UserRoleInfo> UserRoleInfo { get; set; }
+        public DbSet<SlotListView> SlotListView { get; set; }
     }
 }
 

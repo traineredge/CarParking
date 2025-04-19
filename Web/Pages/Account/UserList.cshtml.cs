@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Web.Pages.Account
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "1,2")]
     public class UserListModel : PageModel
     {
         public List<UserInfo> List { get; set; } = new();

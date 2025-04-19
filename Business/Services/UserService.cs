@@ -33,7 +33,7 @@ namespace Business.Services
             PasswordVerificationResult HashResult = new PasswordHasher<UserInfo>().VerifyHashedPassword(userInfo, userInfo.PasswordHash, user.Password);
             if (HashResult != PasswordVerificationResult.Failed)
             {
-                return new Result(true, $"{userInfo.FullName} successfully logged in!");
+                return new Result(true, $"{userInfo.FullName} successfully logged in!", userInfo);
             }
             else
             {

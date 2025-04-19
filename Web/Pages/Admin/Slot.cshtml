@@ -1,0 +1,36 @@
+﻿@page
+@model Web.Pages.Admin.SlotModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Slot</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="post">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Slot Name</label>
+                            <input asp-for="@Model.model.Name" class="form-control" id="Name" placeholder="Enter a slot name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="CarCategoryId" class="form-label">Car Category</label>
+                            <select asp-for="@Model.model.CarCategoryId" class="form-control" placeholder="select a car category">
+                                @foreach (var item in Model.carCategories)
+                                {
+                                    <option value="@item.CarCategoryId">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="LetestPrice" class="form-label">Letest Price</label>
+                            <input asp-for="@Model.model.LetestPrice" class="form-control" id="Name" placeholder="Enter a latest price" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@page
+@model Web.Pages.Admin.SlotListModel
+
+<a class="nav-link text-dark" asp-area="" asp-page="/Admin/Slot">Add</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Car Category</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.LetestPrice</td>
+                <td>@item.CarCategoryName</td>
+                <td>
+                    <a href="/Admin/Slot?Id=@item.SlotId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

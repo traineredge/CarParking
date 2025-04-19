@@ -1,0 +1,23 @@
+﻿@page
+@model Web.Pages.Admin.CarCategoryListModel
+
+<a class="nav-link text-dark" asp-area="" asp-page="/Admin/CarCategory">Add</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a href="/Admin/CarCategory?Id=@item.CarCategoryId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

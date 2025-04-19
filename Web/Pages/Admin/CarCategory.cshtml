@@ -1,0 +1,23 @@
+﻿@page
+@model Web.Pages.Admin.CarCategoryModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Car Category</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="post">
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input asp-for="@Model.model.Name" class="form-control" id="Name" placeholder="Enter a category name" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
