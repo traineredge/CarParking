@@ -8,5 +8,7 @@ namespace Database.Model
         public int CarCategoryId { get; set; }
         [Required]
         public string? Name { get; set; }
+        [Required]
+        public double LatestPrice { get; set; }
     }
 }

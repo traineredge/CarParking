@@ -25,7 +25,15 @@ namespace Web.Pages.Admin
         public IActionResult OnPost()
         {
             model.CreatedBy = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            Result result = new CarCategoryService().Add(model);
+            Result result = null;
+            if (model.CarCategoryId == 0)
+            {
+                result = new CarCategoryService().Add(model);
+            }
+            else
+            {
+                result = new CarCategoryService().Update(model);
+            }
             if (result.Success)
                 return RedirectToPage("/Admin/CarCategoryList");
             else return Page();

@@ -10,9 +10,14 @@
                 </div>
                 <div class="card-body">
                     <form asp-action="post">
+                        <input type="hidden" asp-for="@Model.model.CarCategoryId"/>
                         <div class="mb-3">
                             <label for="Name" class="form-label">Name</label>
                             <input asp-for="@Model.model.Name" class="form-control" id="Name" placeholder="Enter a category name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Price" class="form-label">Price</label>
+                            <input asp-for="@Model.model.LatestPrice" class="form-control" id="Name" placeholder="Enter a category name" required />
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Save</button>
                     </form>

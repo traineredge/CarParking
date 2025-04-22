@@ -11,8 +11,6 @@ namespace Database.Model
         [Required]
         public int CarCategoryId { get; set; }
         [Required]
-        public double LetestPrice { get; set; }
-        [Required]
         public bool IsBooked { get; set; }
     }
 }

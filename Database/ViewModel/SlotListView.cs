@@ -17,7 +17,7 @@ namespace Database.ViewModel
         [Required]
         public int CarCategoryId { get; set; }
         [Required]
-        public double LetestPrice { get; set; }
+        public double LatestPrice { get; set; }
         [Required]
         public bool IsBooked { get; set; }
         public string CarCategoryName { get; set; }
