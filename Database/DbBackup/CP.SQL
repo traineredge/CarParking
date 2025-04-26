@@ -1,90 +1,9 @@
-USE [master]
-GO
-/****** Object:  Database [CarParking]    Script Date: 4/22/2025 8:28:17 PM ******/
-CREATE DATABASE [CarParking]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'CarParking', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\CarParking.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'CarParking_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\CarParking_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
-GO
-ALTER DATABASE [CarParking] SET COMPATIBILITY_LEVEL = 160
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [CarParking].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [CarParking] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [CarParking] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [CarParking] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [CarParking] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [CarParking] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [CarParking] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [CarParking] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [CarParking] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [CarParking] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [CarParking] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [CarParking] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [CarParking] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [CarParking] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [CarParking] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [CarParking] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [CarParking] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [CarParking] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [CarParking] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [CarParking] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [CarParking] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [CarParking] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [CarParking] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [CarParking] SET RECOVERY SIMPLE 
-GO
-ALTER DATABASE [CarParking] SET  MULTI_USER 
-GO
-ALTER DATABASE [CarParking] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [CarParking] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [CarParking] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [CarParking] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [CarParking] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [CarParking] SET ACCELERATED_DATABASE_RECOVERY = OFF  
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'CarParking', N'ON'
-GO
-ALTER DATABASE [CarParking] SET QUERY_STORE = ON
-GO
-ALTER DATABASE [CarParking] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
-GO
 USE [CarParking]
 GO
-/****** Object:  Table [dbo].[CarCategory]    Script Date: 4/22/2025 8:28:17 PM ******/
+/****** Object:  User [sa2]    Script Date: 4/26/2025 8:49:19 PM ******/
+CREATE USER [sa2] FOR LOGIN [sa2] WITH DEFAULT_SCHEMA=[dbo]
+GO
+/****** Object:  Table [dbo].[CarCategory]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -103,7 +22,7 @@ CREATE TABLE [dbo].[CarCategory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Slot]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[Slot]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -123,7 +42,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[SlotListView]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  View [dbo].[SlotListView]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -134,7 +53,7 @@ SELECT        dbo.CarCategory.Name AS CarCategoryName, dbo.Slot.*, dbo.CarCatego
 FROM            dbo.Slot INNER JOIN
                          dbo.CarCategory ON dbo.Slot.CarCategoryId = dbo.CarCategory.CarCategoryId
 GO
-/****** Object:  Table [dbo].[ClientCar]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[ClientCar]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,6 +61,7 @@ GO
 CREATE TABLE [dbo].[ClientCar](
 	[ClientCarId] [int] IDENTITY(1,1) NOT NULL,
 	[CarRegistrationNo] [nvarchar](64) NOT NULL,
+	[CarName] [nvarchar](128) NULL,
 	[UserInfoId] [nvarchar](128) NOT NULL,
 	[CarCategoryId] [int] NOT NULL,
  CONSTRAINT [PK_ClientCar] PRIMARY KEY CLUSTERED 
@@ -150,7 +70,7 @@ CREATE TABLE [dbo].[ClientCar](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Payment]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[Payment]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -170,7 +90,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PaymentMethod]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[PaymentMethod]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -185,7 +105,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Role]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[Role]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -204,7 +124,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SlotBook]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[SlotBook]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -226,7 +146,7 @@ CREATE TABLE [dbo].[SlotBook](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserInfo]    Script Date: 4/22/2025 8:28:18 PM ******/
+/****** Object:  Table [dbo].[UserInfo]    Script Date: 4/26/2025 8:49:20 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -260,6 +180,12 @@ INSERT [dbo].[CarCategory] ([CarCategoryId], [Name], [LatestPrice], [CreatedDate
 GO
 SET IDENTITY_INSERT [dbo].[CarCategory] OFF
 GO
+SET IDENTITY_INSERT [dbo].[ClientCar] ON 
+GO
+INSERT [dbo].[ClientCar] ([ClientCarId], [CarRegistrationNo], [CarName], [UserInfoId], [CarCategoryId]) VALUES (2, N'DHAKA-GA 202525', N'16 siter bus', N'cf47c24d-e5a1-474a-b8ce-151abfa1ee5a', 1)
+GO
+SET IDENTITY_INSERT [dbo].[ClientCar] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Role] ON 
 GO
 INSERT [dbo].[Role] ([RoleId], [Name], [IsActive], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (1, N'Admin', 1, CAST(N'2024-12-14T18:20:45.200' AS DateTime), NULL, NULL, NULL)
@@ -272,15 +198,21 @@ SET IDENTITY_INSERT [dbo].[Role] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Slot] ON 
 GO
-INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (1, N'Slot S1', 1, 0, CAST(N'2025-04-22T18:57:02.673' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
+INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (1, N'Slot S1', 1, 1, CAST(N'2025-04-22T18:57:02.673' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
 GO
-INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (2, N'Slot S2', 1, 0, CAST(N'2025-04-22T18:59:34.087' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
+INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (2, N'Slot S2', 1, 1, CAST(N'2025-04-22T18:59:34.087' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
 GO
-INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (3, N'Slot S3', 1, 0, CAST(N'2025-04-22T20:06:49.563' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
+INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (3, N'Slot S3', 1, 1, CAST(N'2025-04-22T20:06:49.563' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
 GO
 INSERT [dbo].[Slot] ([SlotId], [Name], [CarCategoryId], [IsBooked], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (4, N'Slot T1', 2, 0, CAST(N'2025-04-22T20:07:58.047' AS DateTime), N'4e29dfa4-1a09-4dca-aacf-4928b62edaa9', NULL, NULL)
 GO
 SET IDENTITY_INSERT [dbo].[Slot] OFF
+GO
+INSERT [dbo].[SlotBook] ([SlotBookId], [SlotId], [BookingTime], [BookingDuration], [RegNo], [IsExitRequested], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (N'385e448d-5f6c-416a-aa16-dd0f07b0e8e8', 1, CAST(N'2025-04-26T20:44:00.000' AS DateTime), 60, N'DHAKA-GA 202525', 0, CAST(N'2025-04-26T20:44:32.830' AS DateTime), N'cf47c24d-e5a1-474a-b8ce-151abfa1ee5a', NULL, NULL)
+GO
+INSERT [dbo].[SlotBook] ([SlotBookId], [SlotId], [BookingTime], [BookingDuration], [RegNo], [IsExitRequested], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (N'8310038b-5052-4afd-96aa-221c17da351c', 3, CAST(N'2025-04-26T20:45:00.000' AS DateTime), 60, N'DHAKA-GA 202525', 0, CAST(N'2025-04-26T20:45:15.930' AS DateTime), N'cf47c24d-e5a1-474a-b8ce-151abfa1ee5a', NULL, NULL)
+GO
+INSERT [dbo].[SlotBook] ([SlotBookId], [SlotId], [BookingTime], [BookingDuration], [RegNo], [IsExitRequested], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy]) VALUES (N'ed085b95-a9c9-4aea-9654-00a68afa2d20', 2, CAST(N'2025-04-26T20:44:00.000' AS DateTime), 60, N'DHAKA-GA 202525', 0, CAST(N'2025-04-26T20:44:52.717' AS DateTime), N'cf47c24d-e5a1-474a-b8ce-151abfa1ee5a', NULL, NULL)
 GO
 INSERT [dbo].[UserInfo] ([UserInfoId], [FullName], [Email], [PasswordHash], [IsActive], [CreatedDate], [CreatedBy], [UpdatedDate], [UpdatedBy], [RoleId]) VALUES (N'001dca1d-a5b4-47b4-a20a-df920fe0beac', N'Client-333', N'client333@client.client', N'Hash333', 0, CAST(N'2024-12-14T18:31:21.813' AS DateTime), NULL, NULL, NULL, 3)
 GO

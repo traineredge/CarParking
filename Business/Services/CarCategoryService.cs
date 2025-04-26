@@ -1,5 +1,6 @@
 ﻿using Database.Context;
 using Database.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services
 {

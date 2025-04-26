@@ -12,18 +12,37 @@
                 <div class="card-body">
                     <form asp-action="post">
                         <div class="mb-3">
-                            <label for="Name" class="form-label">Name</label>
+                            <label for="CarCategoryId" class="form-label">Car Category</label>
+                            <select asp-for="@Model.selectedClientCarId" class="form-control" placeholder="select a car">
+                                @foreach (var item in Model.carList)
+                                {
+                                    <option value="@item.ClientCarId">@item.CarName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Booking Time</label>
+                            <input asp-for="model.BookingTime" type="datetime-local" class="form-control" />
+                        </div>
+                        @if (Model.SlotCheckResult.Success)
+                        {
                             <div class="mb-3">
-                                <label for="CarCategoryId" class="form-label">Car Category</label>
-                                <select asp-for="@Model.model.CarCategoryId" class="form-control" placeholder="select a car category">
-                                    @foreach (var item in Model.carCategories)
+                                <label for="BookingDuration" class="form-label">Booking Duration</label>
+                                <select asp-for="@Model.model.BookingDuration" class="form-control" placeholder="select a booking duration">
+                                    @for (int i = 15; i < 96; i += 15)
                                     {
-                                        <option value="@item.CarCategoryId">@item.Name</option>
+                                        <option value="@i">@i minute</option>
                                     }
                                 </select>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                            <button type="submit" class="btn btn-primary w-100">Book</button>
+                        }
+                        else
+                        {
+                            <div class="message">
+                                @Model.SlotCheckResult.Message
+                            </div>
+                        }
                     </form>
                 </div>
             </div>

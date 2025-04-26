@@ -1,0 +1,26 @@
+﻿@page
+@model Web.Pages.Customer.CarListModel
+<a class="nav-link text-dark" asp-area="" asp-page="/Customer/CarRegistration">Register New Car</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Registration Number</td>
+            <td>Category</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>@item.CarName</td>
+                <td>@item.CarRegistrationNo</td>
+                <td>@item.CarCategoryId</td>
+                <td>
+                    <a href="/Customer/CarRegistration?Id=@item.ClientCarId">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

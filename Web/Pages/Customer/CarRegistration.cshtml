@@ -1,0 +1,38 @@
+﻿@page
+@model Web.Pages.Customer.CarRegistrationModel
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Slot</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="post">
+                        <input asp-for="@Model.model.ClientCarId" type="hidden"/>
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input asp-for="@Model.model.CarName" class="form-control" id="Name" placeholder="Enter a slot name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Name" class="form-label">Registration Number</label>
+                            <input asp-for="@Model.model.CarRegistrationNo" class="form-control" id="Name" placeholder="Enter a slot name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="CarCategoryId" class="form-label">Car Category</label>
+                            <select asp-for="@Model.model.CarCategoryId" class="form-control" placeholder="select a car category">
+                                @foreach (var item in Model.carCategories)
+                                {
+                                    <option value="@item.CarCategoryId">@item.Name</option>
+                                }
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,11 +18,11 @@ namespace Business.Services
             carParkingContext.ClientCar.Update(clientCar);
             return new Result().DBCommit(carParkingContext, "Updated Successfully!", null, clientCar);
         }
-        public Result List()
+        public Result List(string UserId)
         {
             try
             {
-                var list = carParkingContext.ClientCar.ToList();
+                var list = carParkingContext.ClientCar.Where(x=>x.UserInfoId==UserId).ToList();
                 return new Result(true, "Success", list);
             }
             catch (Exception ex)
