@@ -1,13 +1,5 @@
 USE [CarParking]
 GO
-/****** Object:  User [sa2]    Script Date: 4/26/2025 8:49:19 PM ******/
-CREATE USER [sa2] FOR LOGIN [sa2] WITH DEFAULT_SCHEMA=[dbo]
-GO
-/****** Object:  Table [dbo].[CarCategory]    Script Date: 4/26/2025 8:49:20 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 CREATE TABLE [dbo].[CarCategory](
 	[CarCategoryId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](255) NOT NULL,

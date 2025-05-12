@@ -32,7 +32,7 @@ namespace Api.Controllers
             Result result = new UserService().List();
             return result;
         }
-        [HttpPost]
+        [HttpGet]
         public Result Single(string Id)
         {
             Result result = new UserService().Single(Id);
